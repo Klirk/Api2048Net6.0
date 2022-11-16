@@ -5,7 +5,7 @@
         //UserName, PassWord, Role
         public string? UserName { get; set; }
         public string? Password { get; set; }
-        public string? ConfigPassword { get; set; }
+        public string? ConfirmPassword { get; set; }
         public int IdType { get; set; }
     }
 

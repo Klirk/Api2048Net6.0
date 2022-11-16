@@ -37,8 +37,8 @@ namespace Api20486._0.DataAccessLayer
                 {
                     sqlCommand.CommandType = System.Data.CommandType.Text;
                     sqlCommand.CommandTimeout = 180;
-                    sqlCommand.Parameters.AddWithValue("@UserName", request.Login_user);
-                    sqlCommand.Parameters.AddWithValue("@PassWord", request.Password_user);
+                    sqlCommand.Parameters.AddWithValue("@UserName", request.UserName);
+                    sqlCommand.Parameters.AddWithValue("@PassWord", request.Password);
                     using (DbDataReader dataReader = await sqlCommand.ExecuteReaderAsync())
                     {
                         if (dataReader.HasRows)
@@ -80,7 +80,7 @@ namespace Api20486._0.DataAccessLayer
                     await _mySqlConnection.OpenAsync();
                 }
 
-                if (!request.Password.Equals(request.ConfigPassword))
+                if (request.Password != request.ConfirmPassword)
                 {
                     response.IsSuccess = false;
                     response.Message = "Password & Confirm Password not Match";

@@ -2,8 +2,8 @@
 {
     public class SignInRequest
     {
-        public string? Login_user { get; set; }
-        public string? Password_user { get; set; }
+        public string? UserName { get; set; }
+        public string? Password { get; set; }
     }
 
     public class SignInResponse
