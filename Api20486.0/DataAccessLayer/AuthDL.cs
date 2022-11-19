@@ -29,13 +29,11 @@ namespace Api20486._0.DataAccessLayer
                     await _mySqlConnection.OpenAsync();
                 }
 
-                string SqlQuery = @"SELECT * 
-                                    FROM Users
-                                    WHERE login_user=@UserName AND password_user=@PassWord;";
+                string SqlQuery = @"SignIn";
 
                 using (SqlCommand sqlCommand = new SqlCommand(SqlQuery, _mySqlConnection))
                 {
-                    sqlCommand.CommandType = System.Data.CommandType.Text;
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     sqlCommand.CommandTimeout = 180;
                     sqlCommand.Parameters.AddWithValue("@UserName", request.UserName);
                     sqlCommand.Parameters.AddWithValue("@PassWord", request.Password);
@@ -86,14 +84,18 @@ namespace Api20486._0.DataAccessLayer
                     response.Message = "Password & Confirm Password not Match";
                     return response;
                 }
+                if(request.IdType != 2 && request.IdType == 1)
+                {
+                    response.IsSuccess = false;
+                    response.Message = "U cant registation admin";
+                    return response;
+                }
 
-                string SqlQuery = @"INSERT INTO Users
-                                    (login_user, password_user, id_type) VALUES 
-                                    (@UserName, @PassWord,@type)";
+                string SqlQuery = @"SignUp";
 
                 using (SqlCommand sqlCommand = new SqlCommand(SqlQuery, _mySqlConnection))
                 {
-                    sqlCommand.CommandType = System.Data.CommandType.Text;
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     sqlCommand.CommandTimeout = 180;
                     sqlCommand.Parameters.AddWithValue("@UserName", request.UserName);
                     sqlCommand.Parameters.AddWithValue("@PassWord", request.Password);
