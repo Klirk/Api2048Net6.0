@@ -1,4 +1,6 @@
+using Api20486._0.Context;
 using Api20486._0.DataAccessLayer;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAuthDL, AuthDL>();
+builder.Services.AddDbContext<AnimesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MySqlDBConnectionString")));
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AuthCorsPolicy", builder => {
