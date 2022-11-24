@@ -1,7 +1,11 @@
-﻿using Api20486._0.DataAccessLayer;
+﻿using Api20486._0.Context;
+using Api20486._0.DataAccessLayer;
 using Api20486._0.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Api20486._0.Controllers
 {
@@ -10,10 +14,14 @@ namespace Api20486._0.Controllers
     public class AuthController : ControllerBase
     {
         public readonly IAuthDL _authDL;
-        public AuthController(IAuthDL authDL)
+        private AnimesContext _animeContext;
+        public AuthController(IAuthDL authDL, AnimesContext animeContext)
         {
             _authDL = authDL;
+            _animeContext = animeContext;
         }
+
+
         //Post Regisration//
         [HttpPost]
         public async Task<ActionResult> SignUp(SignUpRequest request)
@@ -22,6 +30,7 @@ namespace Api20486._0.Controllers
             try
             {
                 response = await _authDL.SignUp(request);
+
             }
             catch (Exception ex)
             {
@@ -36,10 +45,13 @@ namespace Api20486._0.Controllers
         [HttpPost]
         public async Task<ActionResult> SignIn(SignInRequest request)
         {
+            IEnumerable<GetUserId> ids = _animeContext.GetUserIds.FromSqlRaw($"GetId {request.UserName}");
+
             SignInResponse response = new SignInResponse();
             try
             {
                 response = await _authDL.SignIn(request);
+                response.Id_user = ids;
             }
             catch (Exception ex)
             {

@@ -2,16 +2,15 @@
 {
     public class SignUpRequest
     {
-        //UserName, PassWord, Role
-        public string? UserName { get; set; }
-        public string? Password { get; set; }
-        public string? ConfirmPassword { get; set; }
-        public int IdType { get; set; }
+        public string? Login_user { get; set; }
+        public string? Password_user { get; set; }
+        public string? Password_confirmation { get; set; }
+        public int Id_type { get; set; }
     }
-
     public class SignUpResponse
     {
         public bool IsSuccess { get; set; }
         public string? Message { get; set; }
     }
+
 }

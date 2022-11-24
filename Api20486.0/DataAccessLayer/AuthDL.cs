@@ -52,6 +52,7 @@ namespace Api20486._0.DataAccessLayer
                     }
                 }
 
+
             }
             catch (Exception ex)
             {
@@ -78,13 +79,13 @@ namespace Api20486._0.DataAccessLayer
                     await _mySqlConnection.OpenAsync();
                 }
 
-                if (request.Password != request.ConfirmPassword)
+                if (request.Password_user != request.Password_confirmation)
                 {
                     response.IsSuccess = false;
                     response.Message = "Password & Confirm Password not Match";
                     return response;
                 }
-                if(request.IdType != 2 && request.IdType == 1)
+                if (request.Id_type != 2 && request.Id_type == 1)
                 {
                     response.IsSuccess = false;
                     response.Message = "U cant registation admin";
@@ -97,9 +98,9 @@ namespace Api20486._0.DataAccessLayer
                 {
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     sqlCommand.CommandTimeout = 180;
-                    sqlCommand.Parameters.AddWithValue("@UserName", request.UserName);
-                    sqlCommand.Parameters.AddWithValue("@PassWord", request.Password);
-                    sqlCommand.Parameters.AddWithValue("@type", request.IdType);
+                    sqlCommand.Parameters.AddWithValue("@login_user", request.Login_user);
+                    sqlCommand.Parameters.AddWithValue("@password_user", request.Password_user);
+                    sqlCommand.Parameters.AddWithValue("@id_type", request.Id_type);
                     int Status = await sqlCommand.ExecuteNonQueryAsync();
                     if (Status <= 0)
                     {
@@ -108,6 +109,7 @@ namespace Api20486._0.DataAccessLayer
                         return response;
                     }
                 }
+
             }
             catch (Exception ex)
             {

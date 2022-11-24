@@ -13,6 +13,9 @@ namespace Api20486._0.Context
         {
         }
         public DbSet<Anime> Animes { get; set; }
+        public DbSet<AnimeList> animesList { get; set; }
+        public DbSet<GetUserId> GetUserIds { get; set; }
+
     }
 }
 
