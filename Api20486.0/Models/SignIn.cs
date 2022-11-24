@@ -5,13 +5,13 @@ namespace Api20486._0.Models
 {
     public class SignInRequest
     {
-        public string? UserName { get; set; }
-        public string? Password { get; set; }
+        public string? Login_user { get; set; }
+        public string? Password_user { get; set; }
     }
 
     public class SignInResponse
     {
-        public IEnumerable<GetUserId>? Id_user { get; set; }
+        public int Id_user { get; set; }
         public bool IsSuccess { get; set; }
         public string? Message { get; set; }
         

@@ -7,6 +7,7 @@ namespace Api20486._0.Models
     {
             [Key]
             [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+            public int id_anime { get; set; }
             public string? Name_anime { get; set; }
             public double Rated { get; set; }
             public int Episodes { get; set; }

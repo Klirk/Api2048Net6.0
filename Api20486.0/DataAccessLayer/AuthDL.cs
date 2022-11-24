@@ -35,8 +35,8 @@ namespace Api20486._0.DataAccessLayer
                 {
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     sqlCommand.CommandTimeout = 180;
-                    sqlCommand.Parameters.AddWithValue("@UserName", request.UserName);
-                    sqlCommand.Parameters.AddWithValue("@PassWord", request.Password);
+                    sqlCommand.Parameters.AddWithValue("@login_user", request.Login_user);
+                    sqlCommand.Parameters.AddWithValue("@password_user", request.Password_user);
                     using (DbDataReader dataReader = await sqlCommand.ExecuteReaderAsync())
                     {
                         if (dataReader.HasRows)
