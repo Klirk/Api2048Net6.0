@@ -46,7 +46,7 @@ namespace Api20486._0.Controllers
         public async Task<ActionResult> SignIn(SignInRequest request)
         {
             IEnumerable<GetUserId> ids = _animeContext.GetUserIds.FromSqlRaw($"GetId {request.Login_user}");
-            IEnumerable<GetUserType> types = _animeContext.getUserTypes.FromSqlRaw($"GetType {request.Login_user}");
+            IEnumerable<GetUserType> types = _animeContext.GetUserTypes.FromSqlRaw($"GetType {request.Login_user}");
 
             SignInResponse response = new SignInResponse();
             try

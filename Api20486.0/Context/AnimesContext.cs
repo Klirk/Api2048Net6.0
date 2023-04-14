@@ -4,6 +4,7 @@ using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace Api20486._0.Context
@@ -12,11 +13,14 @@ namespace Api20486._0.Context
     {
         public AnimesContext(DbContextOptions options) : base(options)
         {
+
         }
-        public DbSet<Anime> Animes { get; set; }
-        public DbSet<AnimeList> animesList { get; set; }
+
+        public DbSet<AllAnime> Animes { get; set; }
+        public DbSet<AnimeList> AnimesList { get; set; }
+        public DbSet<AddAnimes> Anime { get; set; }
         public DbSet<GetUserId> GetUserIds { get; set; }
-        public DbSet<GetUserType> getUserTypes { get; set; }
+        public DbSet<GetUserType> GetUserTypes { get; set; }
 
     }
 }

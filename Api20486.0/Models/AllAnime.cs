@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Api20486._0.Models
 {
     [Table("AllAnime")]
-    public class Anime
+    public class AllAnime
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
