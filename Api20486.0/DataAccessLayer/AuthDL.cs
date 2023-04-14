@@ -20,7 +20,7 @@ namespace Api20486._0.DataAccessLayer
         {
             SignInResponse response = new SignInResponse();
             response.IsSuccess = true;
-            response.Message = "Successful";
+            response.Message = "";
             try
             {
 
@@ -59,11 +59,7 @@ namespace Api20486._0.DataAccessLayer
                 response.IsSuccess = false;
                 response.Message = ex.Message;
             }
-            finally
-            {
-
-            }
-
+            finally { _mySqlConnection.Close(); }
             return response;
         }
 
@@ -116,10 +112,7 @@ namespace Api20486._0.DataAccessLayer
                 response.IsSuccess = false;
                 response.Message = ex.Message;
             }
-            finally
-            {
-
-            }
+            finally { _mySqlConnection.Close(); }
 
             return response;
         }
